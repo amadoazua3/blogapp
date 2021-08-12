@@ -21,7 +21,8 @@ export default function createView(URI) {
     render(null, router('/loading'));
 
     let request = {
-        headers: getAuthBearerTokenHeader()
+        // headers: getAuthBearerTokenHeader()
+        headers: {'Content-Type': 'application/json'}
     }
     fetchData(route.state, request).then((props) => {
         render(props, route);
