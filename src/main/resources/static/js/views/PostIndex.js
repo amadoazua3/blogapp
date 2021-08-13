@@ -6,26 +6,26 @@ export default function PostIndex(props) {
             <h1>Posts Page</h1>
         </header>
         <main>
-<!--    MAKE CREATE FORM HERE    -->
+            <!--    MAKE CREATE FORM HERE    -->
             <div class="post-container">
                 <form>
-<!--                <input type="text" placeholder="Enter id" class="newPost" id="input-id">-->
-                <input type="text" placeholder="Enter title" class="newPost" id="input-title">
-                <input type="text" placeholder="Enter content" class="newPost" id="input-content">
-                <button  id="btn-add">Add</button>
-                ${props.posts.map(post => `
+                    <input type="text" placeholder="Enter title" id="title">
+                    <input type="text" placeholder="Enter content" id="content">
+                    <button  id="btn-add" type="button">Add Post</button>
+                </form>
+                    ${props.posts.map(post => `
+                <div class="post">
                     <h3 class="post-title" data-id=${post.id}>${post.title}</h3>
                     <h2>${post.content}</h2>
                     <!--   add edit, delete buttons, add edit form   -->
-                    <button id="btn-edit">Edit</button>
-                    <button id="btn-delete">Delete</button>
-                                        `).join('')}   
-              
-                </form>
+                    <button id="btn-edit" class="edit-post-btn">Edit</button>
+                    <button id="btn-delete" class="delete-post-btn">Delete</button>
+                </div>
+                    `).join('')}
+        
+     
             </div>
-    
-                
-                    
+        
         </main>
     `;
 }
@@ -34,38 +34,16 @@ export function PostsEvent() {
 
     // call function for create button listener
 
-    // var postObj = {};
-    // var addListener = function (event) {
-    //
-    //     const id = document.getElementById("input-id").value;
-    //     const title = document.getElementById("input-title").value;
-    //     const content = document.getElementById("input-content").value;
-    //
-    //     postObj = {id, title, content};
-    //     console.log(postObj);
-    //
-    // };
-    //
-    // document.getElementById('btn-add').addEventListener('click', addListener);
-
     createPostEvent();
 
 
     // call function for edit button listener
 
-    var editListener = function (event){
-
-    }
-
-    document.getElementById('btn-edit').addEventListener('click', editListener);
+    editEvent();
 
     // call function for delete button listener
 
-    var deleteListener = function (event){
 
-    }
-
-    document.getElementById('btn-delete').addEventListener('click', deleteListener);
 
 }
 
@@ -74,8 +52,8 @@ function createPostEvent(){
     $("#btn-add").click(function () {
 
         let post = {
-            title: $('#input-title').val(),
-            content: $('#input-content').val()
+            title: $('#title').val(),
+            content: $('#content').val()
         }
 
         let request = {
@@ -93,4 +71,18 @@ function createPostEvent(){
             createView("/posts")
         });
     })
+}
+
+function editEvent(){
+
+    $(".edit-post-btn").click(function () {
+
+        console.log("edit event fired off");
+        $(this).siblings(".edit-title, .edit-content").attr("contenteditable", true);
+        $(this).text("Save");
+
+    })
+
+
+
 }
