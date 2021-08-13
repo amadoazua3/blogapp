@@ -34,6 +34,25 @@ fetch("http://localhost:8080/api/posts", {
     console.log(data);
 });
 
+
+fetch("http://localhost:8080/api/posts", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    redirect: 'follow',
+    body: JSON.stringify([
+            {
+                id: 4,
+                title: "The newest Post",
+                content: "This is a magnificent posts. 13/10"
+            }
+        ]
+    )
+}).then(function(data) {
+    console.log(data);
+});
+
 // Update
 
 fetch("http://localhost:8080/api/posts", {
