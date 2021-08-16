@@ -2,31 +2,30 @@ import createView from "../createView.js";
 
 export default function PostIndex(props) {
     return `
-        <header>
-            <h1>Posts Page</h1>
-        </header>
-        <main>
-            <!--    MAKE CREATE FORM HERE    -->
-            <div class="post-container">
-                <form>
-                    <input type="text" placeholder="Enter title" id="title">
-                    <input type="text" placeholder="Enter content" id="content">
-                    <button  id="btn-add" type="button">Add Post</button>
-                </form>
-                    ${props.posts.map(post => `
-                <div class="post">
-                    <h3 class="post-title" data-id=${post.id}>${post.title}</h3>
-                    <h2>${post.content}</h2>
-                    <!--   add edit, delete buttons, add edit form   -->
-                    <button id="btn-edit" class="edit-post-btn">Edit</button>
-                    <button id="btn-delete" class="delete-post-btn">Delete</button>
-                </div>
-                    `).join('')}
-        
-     
-            </div>
-        
-        </main>
+    <header>
+    <h1>Posts Page</h1>
+    </header>
+    <main>
+        <!--    MAKE CREATE FORM HERE    -->
+        <form>
+            <input type="text" id="title">
+            <input type="text" id="content">
+            <button id="create-post-btn" type="button">Add Post</button>
+        </form>
+        ${props.posts.map(post => `
+        <div class="post">
+    
+            <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
+            <h4 class="edit-content">${post.content}</h4>
+    
+            <!--   add edit, delete buttons, add edit form   -->
+    
+            <button class="edit-post-btn" data-id="${post.id}">Edit</button>
+            <button class="delete-post-btn" data-id="${post.id}">Delete</button>
+        </div>
+        `).join('')}
+    
+    </main>
     `;
 }
 
@@ -43,6 +42,7 @@ export function PostsEvent() {
 
     // call function for delete button listener
 
+    deleteEvent();
 
 
 }
@@ -78,11 +78,68 @@ function editEvent(){
     $(".edit-post-btn").click(function () {
 
         console.log("edit event fired off");
+
+        $(".edit-title, .edit-content").attr("contenteditable", false);
+        $(".edit-post-btn").text("Edit");
+
         $(this).siblings(".edit-title, .edit-content").attr("contenteditable", true);
+
         $(this).text("Save");
+
+        $(this).on("click", submitEditEvent)
 
     })
 
+}
 
+function submitEditEvent(){
+
+    let post = {
+        title: $(this).siblings(".edit-title").text(),
+        content: $(this).siblings(".edit-content").text()
+    }
+
+    let request = {
+        method: "PUT",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(post)
+    }
+
+    let id = $(this).attr("data-id");
+
+    fetch(`http://localhost:8080/api/posts/${id}`, request)
+        .then(res => {
+            console.log(res.status);
+            createView("/posts")
+        }).catch(error => {
+        console.log(error);
+        createView("/posts")
+    });
+
+    $(this).off("click", submitEditEvent);
+}
+
+
+function deleteEvent(){
+
+    $(".delete-post-btn").click(function() {
+
+        let request = {
+            method: "DELETE",
+            headers: {"Content-Type":"application/json"},
+        }
+
+        let id = $(this).attr("data-id");
+
+        fetch(`http://localhost:8080/api/posts/${id}`, request)
+            .then(res => {
+                console.log(res.status);
+                createView("/posts")
+            }).catch(error => {
+            console.log(error);
+            createView("/posts")
+        });
+
+    })
 
 }
