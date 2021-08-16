@@ -1,4 +1,4 @@
-package com.codeup.blogapp;
+package com.codeup.blogapp.data;
 
 public class Post {
 

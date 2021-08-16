@@ -49,7 +49,7 @@ export function PostsEvent() {
 
 function createPostEvent(){
 
-    $("#btn-add").click(function () {
+    $("#create-post-btn").click(function () {
 
         let post = {
             title: $('#title').val(),
@@ -57,7 +57,7 @@ function createPostEvent(){
         }
 
         let request = {
-            method: "Post",
+            method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(post)
         }
