@@ -12,6 +12,9 @@ public class PostsController {
 
     @GetMapping
     private List<Post> getPosts(){
+
+
+
        return new ArrayList<Post>(){{
            add(new Post(1L, "A new Post", "This is a brilliant posts. 10/10"));
            add(new Post(2L, "A new Post", "This is a brilliant posts. 11/10"));
