@@ -1,6 +1,7 @@
 package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.Post;
+import com.codeup.blogapp.data.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,21 +14,24 @@ public class PostsController {
     @GetMapping
     private List<Post> getPosts(){
 
+        User user = new User("testing");
 
+        return new ArrayList<Post>(){{
+           add(new Post(1L, "A new Post", "This is a brilliant posts. 10/10", user));
+           add(new Post(2L, "A new Post", "This is a brilliant posts. 11/10", user));
+           add(new Post(3L, "A new Post", "This is a brilliant posts. 12/10", user));
 
-       return new ArrayList<Post>(){{
-           add(new Post(1L, "A new Post", "This is a brilliant posts. 10/10"));
-           add(new Post(2L, "A new Post", "This is a brilliant posts. 11/10"));
-           add(new Post(3L, "A new Post", "This is a brilliant posts. 12/10"));
-
-       }};
+        }};
     }
 
     @GetMapping("{id}")
     private Post getPostById(@PathVariable Long id){
+
+        User user = new User(1L, "testing", "testing@email.com", "testing123", User.Role.USER, null);
+
         // api/posts/1
         if(id == 1){
-            return new Post(1L, "A new Post", "This is a brilliant posts. 10/10");
+            return new Post(1L, "A new Post", "This is a brilliant posts. 10/10", user);
         }else{
             return null;
         }

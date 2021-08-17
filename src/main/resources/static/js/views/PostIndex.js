@@ -13,6 +13,7 @@ export default function PostIndex(props) {
             <button id="create-post-btn" type="button">Add Post</button>
         </form>
         ${props.posts.map(post => `
+        <h2>${post.user.username}</h2>
         <div class="post">
     
             <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>

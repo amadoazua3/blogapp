@@ -12,20 +12,23 @@ import java.util.List;
 @RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
+    User user = new User(1L, "testing", "testing@email.com", "testing123", User.Role.USER,null);
+
     @GetMapping
     private List<User> getUsers(){
         return new ArrayList<User>(){{
-            add(new User(1L, "amuro.ray79", "rx782@email.com", "Universal0079", User.Role.USER));
-            add(new User(2L, "hathaway.noa", "rx105@email.com", "Hathaway0105", User.Role.USER));
-            add(new User(3L, "heero.yuy", "wingzero@email.com", "EndlessWaltz00", User.Role.USER));
+            add(new User(1L, "amuro.ray79", "rx782@email.com", "Universal0079", User.Role.USER, null));
+            add(new User(2L, "hathaway.noa", "rx105@email.com", "Hathaway0105", User.Role.USER, null));
+            add(new User(3L, "heero.yuy", "wingzero@email.com", "EndlessWaltz00", User.Role.USER, null));
         }};
     }
 
     @GetMapping("{id}")
     private User getUserById(@PathVariable Long id){
+
         // api/posts/1
         if(id == 1){
-            return new User(1L, "amuro.ray79", "rx782@email.com", "Universal0079", User.Role.USER);
+            return new User(1L, "amuro.ray79", "rx782@email.com", "Universal0079", User.Role.USER, null);
         }else{
             return null;
         }
