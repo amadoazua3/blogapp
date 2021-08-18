@@ -6,12 +6,14 @@ public class Post {
     private String title;
     private String content;
     private User user;
+//    private Category category;
 
     public Post(Long id, String title, String content, User user) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
+//        this.category = category;
     }
 
     public Long getId() {
@@ -46,4 +48,11 @@ public class Post {
         this.user = user;
     }
 
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 }

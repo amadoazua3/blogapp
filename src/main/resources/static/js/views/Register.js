@@ -47,7 +47,6 @@ export function RegisterEvent(){
                 createView("/");
             });
 
-
     })
 
 }
