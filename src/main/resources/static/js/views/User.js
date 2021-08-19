@@ -6,50 +6,52 @@ export default function User(props){
         <header>
         <h1>User information</h1>
         </header>
-        
+        <main>
             
-            ${props.user.map(post => `
+            ${props.users.map(user => `
                 <form>
                     <div class="row g-3">
                         <div class="col">
-                            <input type="text" class="form-control" data-id=${user.id} aria-label="First name">
+                            <input type="text" class="form-control" data-id=${user.id}>${user.id}</input>
                         </div>
+                         <button type="button" class="edit-btn" data-id=${user.id}>Edit</button>
                     </div>
                     <div class="row g-3">
                         <div class="col">
-                            <input type="text" class="form-control" data-id=${user.username} aria-label="First name">
+                            <input type="text" class="form-control" data-id=${user.username}>${user.username}</input>
                         </div>
+                         <button type="button" class="edit-btn" data-id=${user.username}>Edit</button>
                     </div>
                     <div class="row g-3">
                         <div class="col">
-                            <input type="text" class="form-control" data-id=${user.email} aria-label="First name">
+                            <input type="text" class="form-control" data-id=${user.email}>${user.email}</input>
                         </div>
+                         <button type="button" class="edit-btn " data-id=${user.email}>Edit</button>
                     </div>
                     <div class="row g-3">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Password" aria-label="First name">
+                            <input type="text" class="form-control" data-id=${user.password}>${user.password}</input>
                         </div>
+                         <button type="button" class="edit-btn" data-id=${user.password}>Edit</button>
                     </div>
-                    <button type="button" id="edit-btn">Edit</button>
+                   
                 </form>
-            `)}
-
-
-
-    `
+            `).join('')}
+        </main>
+    `;
 }
 
 
 export function UserEvent(){
 
-    $("#edit-btn").click(function () {
-
-        console.log("edit event fired off!!");
-
-        $().attr("contenteditable", false);
-        $("#").text("Edit");
-
-    })
+    // $(".edit-btn").click(function () {
+    //
+    //     console.log("edit event fired off!!");
+    //
+    //     $("").attr("contenteditable", false);
+    //     $(".edit-btn").text("Edit");
+    //
+    // })
 
 
 }

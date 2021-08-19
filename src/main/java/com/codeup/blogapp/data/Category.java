@@ -6,13 +6,14 @@ public class Category {
 
     private Long id;
     private String name;
-//    private Collection<Post> posts;
+    private Collection<Post> posts;
 
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
-//        this.posts = posts;
     }
+
+    public Category(){}
 
     public Long getId() {
         return id;
@@ -30,11 +31,11 @@ public class Category {
         this.name = name;
     }
 
-//    public Collection<Post> getPosts() {
-//        return posts;
-//    }
-//
-//    public void setPosts(Collection<Post> posts) {
-//        this.posts = posts;
-//    }
+    public Collection<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Collection<Post> posts) {
+        this.posts = posts;
+    }
 }
