@@ -39,14 +39,14 @@ export default function User(props){
 
 export function UserEvent(){
 
-    $(".edit-btn").click(function () {
-
-        console.log("edit event fired off!!");
-
-        $("").attr("contenteditable", false);
-        $(".edit-btn").text("Edit");
-
-    })
+    // $(".edit-btn").click(function () {
+    //
+    //     console.log("edit event fired off!!");
+    //
+    //     $("").attr("contenteditable", false);
+    //     $(".edit-btn").text("Edit");
+    //
+    // })
 
 
 }

@@ -12,15 +12,20 @@ import java.util.List;
 @RequestMapping(value = "/api/posts", headers = "Accept=application/json")
 public class PostsController {
 
+    User user = new User("testing");
+    List<Category> categories = new ArrayList<>(){{
+        add(new Category(1L, "Spring boot"));
+        add(new Category(2L, "Why JS views makes my head hurt"));
+    }};
+
     @GetMapping
     private List<Post> getPosts(){
 
-        User user = new User("testing");
 
         return new ArrayList<Post>(){{
-           add(new Post(1L, "A new Post", "This is a brilliant posts. 10/10", user));
-           add(new Post(2L, "A new Post", "This is a brilliant posts. 11/10", user));
-           add(new Post(3L, "A new Post", "This is a brilliant posts. 12/10", user));
+           add(new Post(1L, "A new Post", "This is a brilliant posts. 10/10", user, categories));
+           add(new Post(2L, "A new Post", "This is a brilliant posts. 11/10", user, categories));
+           add(new Post(3L, "A new Post", "This is a brilliant posts. 12/10", user, categories));
 
         }};
     }
@@ -28,11 +33,11 @@ public class PostsController {
     @GetMapping("{id}")
     private Post getPostById(@PathVariable Long id){
 
-        User user = new User(1L, "testing", "testing@email.com", "testing123", User.Role.USER, null);
+        User user = new User(1L, "testing", "testing@email.com", "testing123", User.Role.USER,null);
 
         // api/posts/1
         if(id == 1){
-            return new Post(1L, "A new Post", "This is a brilliant posts. 10/10", user);
+            return new Post(1L, "A new Post", "This is a brilliant posts. 10/10", user, categories);
         }else{
             return null;
         }
