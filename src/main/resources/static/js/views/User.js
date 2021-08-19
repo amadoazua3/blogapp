@@ -7,35 +7,30 @@ export default function User(props){
         <h1>User information</h1>
         </header>
         <main>
-            
             ${props.users.map(user => `
-                <form>
-                    <div class="row g-3">
-                        <div class="col">
-                            <input type="text" class="form-control" data-id=${user.id}>${user.id}</input>
-                        </div>
-                         <button type="button" class="edit-btn" data-id=${user.id}>Edit</button>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col">
-                            <input type="text" class="form-control" data-id=${user.username}>${user.username}</input>
-                        </div>
-                         <button type="button" class="edit-btn" data-id=${user.username}>Edit</button>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col">
-                            <input type="text" class="form-control" data-id=${user.email}>${user.email}</input>
-                        </div>
-                         <button type="button" class="edit-btn " data-id=${user.email}>Edit</button>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col">
-                            <input type="text" class="form-control" data-id=${user.password}>${user.password}</input>
-                        </div>
-                         <button type="button" class="edit-btn" data-id=${user.password}>Edit</button>
-                    </div>
-                   
-                </form>
+                <div class="container">
+                <form class="row g-3">
+                      <div class="col-md-6">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="text" class="form-control" value=${user.id} data-id=${user.id}>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" value=${user.username}>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="text" class="form-control" value=${user.email}>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" value=${user.password}>
+                      </div>
+                      <div class="col-12">
+                    <button type="button" class="edit-btn btn-primary" data-id=${user.id}>Edit</button>
+                  </div>
+                </form>  
+                </div>
             `).join('')}
         </main>
     `;
@@ -44,14 +39,14 @@ export default function User(props){
 
 export function UserEvent(){
 
-    // $(".edit-btn").click(function () {
-    //
-    //     console.log("edit event fired off!!");
-    //
-    //     $("").attr("contenteditable", false);
-    //     $(".edit-btn").text("Edit");
-    //
-    // })
+    $(".edit-btn").click(function () {
+
+        console.log("edit event fired off!!");
+
+        $("").attr("contenteditable", false);
+        $(".edit-btn").text("Edit");
+
+    })
 
 
 }
