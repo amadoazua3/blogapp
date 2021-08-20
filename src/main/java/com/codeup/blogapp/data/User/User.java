@@ -1,6 +1,9 @@
-package com.codeup.blogapp.data;
+package com.codeup.blogapp.data.User;
+
+import com.codeup.blogapp.data.Post.Post;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
 
 @Entity
@@ -14,14 +17,18 @@ public class User {
     @Column(nullable = false)
     private String username;
 
+    @Email
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role = Role.USER;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "posts")
     private Collection<Post> posts;
 
     public enum Role {USER, ADMIN};

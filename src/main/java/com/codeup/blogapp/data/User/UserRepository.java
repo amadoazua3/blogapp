@@ -1,5 +1,6 @@
-package com.codeup.blogapp.data;
+package com.codeup.blogapp.data.User;
 
+import com.codeup.blogapp.data.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public class UserRepository {
