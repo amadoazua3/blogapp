@@ -59,15 +59,15 @@ public class UsersController {
     }
 
     @PostMapping("/findByUsername")
-    private void findByUsername(@RequestParam String username){
+    private User findByUsername(@RequestParam String username){
         System.out.println("Username: " + username);
-
+        return usersRepository.findByUsername(username);
     }
 
     @PostMapping("/findByEmail")
-    private void findByEmail(@RequestParam String email){
+    private User findByEmail(@RequestParam String email){
         System.out.println("E-mail: " + email);
-
+        return usersRepository.findByEmail(email);
     }
 
     @PutMapping({"{id}/updatePassword"})
@@ -76,8 +76,8 @@ public class UsersController {
             System.out.println("Password for id: " + id + " has been updated!");
             System.out.println("Old password: " + oldPassword);
             System.out.println("New password: " + newPassword);
+            usersRepository.updatePassword(id);
         }
-
     }
 
 }

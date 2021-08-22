@@ -27,18 +27,18 @@ public class PostsController {
     }
 
     @PostMapping
-    private void createPost(@RequestBody Post post, Post newPost){
+    private void createPost(@RequestBody Post newPost){
 
-        System.out.println(post.getTitle());
-        System.out.println(post.getContent());
+        System.out.println(newPost.getTitle());
+        System.out.println(newPost.getContent());
         postsRepository.save(newPost);
     }
 
     @PutMapping({"/{id}"})
-    private void updatePost(@PathVariable Long id, @RequestBody Post post, Post postToUpdate){
+    private void updatePost(@PathVariable Long id, @RequestBody Post postToUpdate){
 
-        System.out.println(post.getTitle());
-        System.out.println(post.getContent());
+        System.out.println(postToUpdate.getTitle());
+        System.out.println(postToUpdate.getContent());
         postsRepository.save(postToUpdate);
     }
 
