@@ -76,6 +76,9 @@ public class UsersController {
             System.out.println("Password for id: " + id + " has been updated!");
             System.out.println("Old password: " + oldPassword);
             System.out.println("New password: " + newPassword);
+            User user = usersRepository.getById(id);
+            user.setPassword(newPassword);
+            usersRepository.save(user);
         }
     }
 

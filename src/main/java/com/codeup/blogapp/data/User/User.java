@@ -1,7 +1,6 @@
 package com.codeup.blogapp.data.User;
 
 import com.codeup.blogapp.data.Post.Post;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
