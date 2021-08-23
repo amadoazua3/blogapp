@@ -3,10 +3,11 @@ package com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.Category.Category;
 import com.codeup.blogapp.data.User.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+
 
 @Entity
 @Table(name="posts")
@@ -23,12 +24,12 @@ public class Post {
     private String content;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     @JoinTable(
         name="post_category",
         joinColumns={@JoinColumn(name="post_id")},

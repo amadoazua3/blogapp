@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/users", headers = "Accept=application/json")
+@RequestMapping(value = "/api/users", headers = "Accept=application/json", produces = "application/json")
 public class UsersController {
 
     private final UsersRepository usersRepository;
@@ -29,21 +29,21 @@ public class UsersController {
     }
 
     @PostMapping
-    private void createUser(@RequestBody User user, User newPost){
+    private void createUser(@RequestBody User user){
 
         System.out.println(user.getId());
         System.out.println(user.getUsername());
         System.out.println(user.getEmail());
-        usersRepository.save(newPost);
+        usersRepository.save(user);
     }
 
     @PutMapping({"/{id}"})
-    private void updateUser(@PathVariable Long id, @RequestBody User user, User postToUpdate){
+    private void updateUser(@PathVariable Long id, @RequestBody User user){
 
         System.out.println(user.getId());
         System.out.println(user.getUsername());
         System.out.println(user.getEmail());
-        usersRepository.save(postToUpdate);
+        usersRepository.save(user);
     }
 
     @DeleteMapping({"{id}"})
