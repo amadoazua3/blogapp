@@ -8,5 +8,5 @@ INSERT INTO post_tags (post_id, tag_id) VALUES (1, 1);
 
 SELECT * FROM users;
 
-SELECT * FROM posts;
+
 SELECT * FROM post_tags;

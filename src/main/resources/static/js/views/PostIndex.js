@@ -34,15 +34,17 @@ function getPostsComponent(posts){
                 <h4 class="edit-content">${post.content}</h4>
                
                 <h4 class="username">Posted By: ${post.user.username}</h4>
-                <div class="categories">
-                ${getPostCategoriesComponent(post.categories)}
-                </div>
+          
             
                 <button class="edit-post-btn" data-id="${post.id}">Edit</button>
                 <button class="delete-post-btn" data-id="${post.id}">Delete</button>
             </div>
             `}).join('');
 }
+
+// <div class="categories">
+// ${getPostCategoriesComponent(post.categories)}
+// </div>
 
 function getPostCategoriesComponent(categories){
 
