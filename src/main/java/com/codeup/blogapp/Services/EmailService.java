@@ -13,11 +13,10 @@ public class EmailService {
     @Autowired
     public JavaMailSender emailSender;
 
-    private String from;
 
     public void prepareAndSend(Post post, String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom("smtp.mailtrap.io");
+        msg.setFrom("amado.azua3@gmail.com");
         msg.setTo(post.getUser().getEmail());
         msg.setSubject(subject);
         msg.setText(body);
