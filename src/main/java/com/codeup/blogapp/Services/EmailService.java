@@ -16,7 +16,7 @@ public class EmailService {
 
     public void prepareAndSend(Post post, String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom("amado.azua3@gmail.com");
+        msg.setFrom("Please input an email for this to work");
         msg.setTo(post.getUser().getEmail());
         msg.setSubject(subject);
         msg.setText(body);
