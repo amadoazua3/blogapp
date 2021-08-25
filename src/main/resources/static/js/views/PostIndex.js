@@ -4,17 +4,20 @@ export default function PostIndex(props) {
     console.log(props);
     return `
     <header>
-    <h1>Posts Page</h1>
+    <h1 class="text-center">Posts Page</h1>
     </header>
     <main>
         <form>
-            <input type="text" id="title">
-            <input type="text" id="content">
+        <div class="container" >
+            <input type="text" id="title" placeholder="Title">
+            <input type="text" id="content" placeholder="Content">
             <select>
                 <option value="">---Select a Category---</option>
                 ${props.categories.map(category => `<option>${category.name}</option>`)}
             </select>
-            <button id="create-post-btn" type="button">Add Post</button>
+      
+            <button id="create-post-btn" type="button" class="btn-primary">Add Post</button>
+        </div>      
         </form>
         <div>
             ${getPostsComponent(props.posts)}
@@ -29,22 +32,31 @@ function getPostsComponent(posts){
     {
         console.log(post);
         return `
-            <div class="post">
-                <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
-                <h4 class="edit-content">${post.content}</h4>
-               
-                <h4 class="username">Posted By: ${post.user.username}</h4>
           
-            
-                <button class="edit-post-btn" data-id="${post.id}">Edit</button>
-                <button class="delete-post-btn" data-id="${post.id}">Delete</button>
+            <div class="post">
+                <div class="card-body">
+                    <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
+                    <p class="edit-content">${post.content}</p>
+                    <h6 class="username">Posted By: ${post.user.username}</h6>
+                    <button class="edit-post-btn btn-primary" data-id="${post.id}">Edit</button>
+                    <button class="delete-post-btn btn-danger" data-id="${post.id}">Delete</button>
+                </div>
+                  
             </div>
             `}).join('');
 }
 
-// <div class="categories">
-// ${getPostCategoriesComponent(post.categories)}
+// <div className="post">
+//     <h3 className="edit-title" data-id=${post.id}>${post.title}</h3>
+//     <h4 className="edit-content">${post.content}</h4>
+//
+//     <h4 className="username">Posted By: ${post.user.username}</h4>
+//
+//
+//     <button className="edit-post-btn" data-id="${post.id}">Edit</button>
+//     <button className="delete-post-btn" data-id="${post.id}">Delete</button>
 // </div>
+
 
 function getPostCategoriesComponent(categories){
 
