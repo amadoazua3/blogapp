@@ -67,7 +67,7 @@ public class UsersController {
     @PostMapping("/findByEmail")
     private User findByEmail(@RequestParam String email){
         System.out.println("E-mail: " + email);
-        return usersRepository.findByEmail(email);
+        return usersRepository.findByEmail(email).get();
     }
 
     @PutMapping({"{id}/updatePassword"})
