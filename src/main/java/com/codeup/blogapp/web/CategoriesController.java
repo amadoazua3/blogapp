@@ -3,9 +3,7 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.Category.CategoriesRepository;
 import com.codeup.blogapp.data.Category.Category;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +23,20 @@ public class CategoriesController {
         return categoriesRepository.findAll();
     }
 
+    @PostMapping
+    private void createCategories(Category category){
+        categoriesRepository.save(category);
+    }
 
+    @PutMapping
+    private void updateCategory(Category category){
+        categoriesRepository.save(category);
+    }
 
+    @DeleteMapping
+    private void deleteCategory(@PathVariable long id){
+        categoriesRepository.deleteById(id);
+    }
 
 
 }

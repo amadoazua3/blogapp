@@ -46,17 +46,6 @@ function getPostsComponent(posts){
             `}).join('');
 }
 
-// <div className="post">
-//     <h3 className="edit-title" data-id=${post.id}>${post.title}</h3>
-//     <h4 className="edit-content">${post.content}</h4>
-//
-//     <h4 className="username">Posted By: ${post.user.username}</h4>
-//
-//
-//     <button className="edit-post-btn" data-id="${post.id}">Edit</button>
-//     <button className="delete-post-btn" data-id="${post.id}">Delete</button>
-// </div>
-
 
 function getPostCategoriesComponent(categories){
 

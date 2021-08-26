@@ -37,8 +37,6 @@ export default function router(URI) {
             },
             uri: '/posts',
             title: 'All Posts',
-            // TODO: add event callback under viewEvent property
-            // viewEvent: myEvent
             viewEvent: PostsEvent
         },
         '/about': {
