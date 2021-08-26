@@ -1,4 +1,5 @@
 import createView from "../createView.js";
+import {getHeaders} from "../auth.js";
 
 export default function PostIndex(props) {
     console.log(props);
@@ -88,7 +89,7 @@ function createPostEvent(){
 
         let request = {
             method: "POST",
-            headers: {"Content-Type":"application/json"},
+            headers: getHeaders(),
             body: JSON.stringify(post)
         }
 
@@ -132,7 +133,7 @@ function submitEditEvent(){
 
     let request = {
         method: "PUT",
-        headers: {"Content-Type":"application/json"},
+        headers: getHeaders(),
         body: JSON.stringify(post)
     }
 
@@ -157,7 +158,7 @@ function deleteEvent(){
 
         let request = {
             method: "DELETE",
-            headers: {"Content-Type":"application/json"},
+            headers: getHeaders(),
         }
 
         let id = $(this).attr("data-id");
