@@ -7,8 +7,20 @@ export default function Home(props) {
         <main>
             <div>
                 <p>
-                    This is the home page text.
-                </p>    
+                    Welcome
+                </p>  
+                <p>
+                    Bienvenidos
+                </p>  
+                <p>
+                    Bienvenue
+                </p>
+                 <p>
+                    Willkommen
+                </p>
+                 <p>
+                    ウエルカム
+                </p>
             </div>
         </main>
     `;
