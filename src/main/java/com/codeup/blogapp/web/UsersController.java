@@ -2,7 +2,9 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.User.User;
 import com.codeup.blogapp.data.User.UsersRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,7 +35,14 @@ public class UsersController {
         return usersRepository.getById(id);
     }
 
-    @PostMapping("/create")
+    @GetMapping("/me")
+    private User getCurrentUser(OAuth2Authentication auth){
+        String email = auth.getName();
+        return usersRepository.findByEmail(email).get();
+    }
+
+    @PostMapping
+    @PreAuthorize("!hasAuthority('USER')")
     private void createUser(@RequestBody User user){
         
         user.setPassword(passwordEncoder.encode(user.getPassword()));
