@@ -42,8 +42,8 @@ public class UsersController {
     }
 
     @PostMapping
-    @PreAuthorize("!hasAuthority('USER')")
-    private void createUser(@RequestBody User user){
+    @PreAuthorize("!hasAuthority('USER') || (#oldPassword != null && !#oldPassword.isEmpty())")
+    public void createUser(@RequestBody User user){
         
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
@@ -83,7 +83,8 @@ public class UsersController {
     }
 
     @PutMapping({"{id}/updatePassword"})
-    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
+    @PreAuthorize("!hasAuthority('User') || (#oldPassword != null && !#oldPassword.isEmpty())")
+    public void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
         if(!newPassword.equals(oldPassword)){
             System.out.println("Password for id: " + id + " has been updated!");
             System.out.println("Old password: " + oldPassword);
