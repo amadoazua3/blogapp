@@ -1,4 +1,5 @@
 import createView from "../createView.js";
+import {login} from "../auth.js";
 
 export default function Register(){
 
@@ -44,6 +45,9 @@ export function RegisterEvent(){
         fetch("http://localhost:8080/api/users/create", request)
             .then((response) => {
                 console.log(response.status)
+                if(response.status === 200){
+                    login(post.email, post.password);
+                }
                 createView("/");
             });
 

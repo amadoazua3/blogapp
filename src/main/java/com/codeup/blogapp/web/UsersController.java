@@ -41,7 +41,7 @@ public class UsersController {
         return usersRepository.findByEmail(email).get();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("!hasAuthority('USER') || (#oldPassword != null && !#oldPassword.isEmpty())")
     public void createUser(@RequestBody User user){
         

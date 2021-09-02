@@ -31,6 +31,7 @@ function getPostsComponent(posts){
 
     return posts.map(post =>
     {
+        let user = post.user ? post.user.username : "anonymous";
         console.log(post);
         return `
           
@@ -38,7 +39,7 @@ function getPostsComponent(posts){
                 <div class="card-body">
                     <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
                     <p class="edit-content">${post.content}</p>
-                    <h6 class="username">Posted By: ${post.user.username}</h6>
+                    <h6 class="username">Posted By: ${user}</h6>
                     <button class="edit-post-btn btn-primary" data-id="${post.id}">Edit</button>
                     <button class="delete-post-btn btn-danger" data-id="${post.id}">Delete</button>
                 </div>

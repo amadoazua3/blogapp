@@ -8,28 +8,33 @@ import createView from "./createView.js";
 export default function addLoginEvent() {
     document.querySelector("#login-btn").addEventListener("click", function () {
         let obj = {
-            username: document.querySelector("#username").value,
+            email: document.querySelector("#email").value,
             password: document.querySelector("#password").value,
             grant_type: 'password'
         }
 
-        let request = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + btoa('rest-blog-client:secret')
-            },
-            body: `grant_type=${obj.grant_type}&username=${obj.username}&password=${obj.password}&client_id=rest-blog-client`
-        };
+        login(obj.email, obj.password);
 
-        fetchData(
-            {
-                route: `/oauth/token`
-            },
-            request).then((data) => {
-            setTokens(data);
-            createView("/");
-        });
+    });
+}
+
+export function login(email, password){
+    let request = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + btoa('rest-blog-client:secret')
+        },
+        body: `grant_type=password&username=${email}&password=${password}&client_id=rest-blog-client`
+    };
+
+    fetchData(
+        {
+            route: `/oauth/token`
+        },
+        request).then((data) => {
+        setTokens(data);
+        createView("/");
     });
 }
 
